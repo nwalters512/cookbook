@@ -6,27 +6,23 @@
 
 // You can delete this file if you're not using it
 
-const path = require(`path`);
-const { createFilePath } = require(`gatsby-source-filesystem`);
+const path = require(`path`)
+const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions;
-  if (node.internal.type !== 'Recipe') return;
-  console.log(node);
-  const fileNode = getNode(node.parent);
-  const slug = createFilePath({ node, getNode, basePath: 'recipes' });
-  console.log(fileNode);
-  console.log(slug);
-  console.log('======');
+  const { createNodeField } = actions
+  if (node.internal.type !== "Recipe") return
+  const fileNode = getNode(node.parent)
+  const slug = createFilePath({ node, getNode, basePath: "recipes" })
   createNodeField({
     node,
-    name: 'slug',
+    name: "slug",
     value: `/recipes${slug}`,
-  });
+  })
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage } = actions
   const result = await graphql(`
     query {
       allRecipe {
@@ -39,15 +35,14 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `);
-  console.log(JSON.stringify(result, null, 2));
+  `)
   result.data.allRecipe.edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
       component: path.resolve(`./src/templates/recipe.js`),
       context: {
         slug: node.fields.slug,
-      }
-    });
-  });
+      },
+    })
+  })
 }

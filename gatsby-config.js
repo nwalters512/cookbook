@@ -31,7 +31,7 @@ module.exports = {
       resolve: `gatsby-transformer-yaml`,
       options: {
         typeName: `Recipe`,
-      }
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
