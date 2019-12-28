@@ -12,7 +12,6 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type !== "Recipe") return
-  const fileNode = getNode(node.parent)
   const slug = createFilePath({ node, getNode, basePath: "recipes" })
   createNodeField({
     node,
@@ -23,7 +22,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  const result = await graphql(`
+  const result = await graphql`
     query {
       allRecipe {
         edges {
@@ -35,7 +34,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `)
+  `
   result.data.allRecipe.edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,

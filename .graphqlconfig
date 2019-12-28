@@ -1,0 +1,7 @@
+{
+  "extensions": {
+    "endpoints": {
+      "dev": "http://localhost:8000/__graphql"
+    }
+  }
+}
