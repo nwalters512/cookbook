@@ -12,8 +12,9 @@ export default ({ data }) => {
   const steps = recipe.steps.map(step => <li>{step}</li>)
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title={recipe.title} description={recipe.description} />
       <h1>{recipe.title}</h1>
+      <blockquote>{recipe.description}</blockquote>
       <h2>Ingredients</h2>
       <ul>{ingredients}</ul>
       <h2>Steps</h2>
@@ -26,6 +27,7 @@ export const query = graphql`
   query($slug: String!) {
     recipe(fields: { slug: { eq: $slug } }) {
       title
+      description
       ingredients
       steps
       notes
