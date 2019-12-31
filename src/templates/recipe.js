@@ -13,12 +13,12 @@ export default ({ data }) => {
   return (
     <Layout>
       <SEO title={recipe.title} description={recipe.description} />
-      <h1>{recipe.title}</h1>
+      <h1 className="text-5xl">{recipe.title}</h1>
       <blockquote>{recipe.description}</blockquote>
-      <h2>Ingredients</h2>
-      <ul>{ingredients}</ul>
-      <h2>Steps</h2>
-      <ol>{steps}</ol>
+      <h2 className="text-3xl">Ingredients</h2>
+      <ul className="list-disc">{ingredients}</ul>
+      <h2 className="text-3xl">Steps</h2>
+      <ol className="list-decimal">{steps}</ol>
     </Layout>
   )
 }

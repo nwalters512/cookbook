@@ -7,6 +7,17 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Cormorant Garamond`,
+          },
+        ],
+      },
+    },
+    `gatsby-plugin-postcss`,
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,

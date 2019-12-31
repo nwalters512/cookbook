@@ -22,7 +22,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  const result = await graphql`
+  const result = await graphql(`
     query {
       allRecipe {
         edges {
@@ -34,7 +34,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `
+  `)
   result.data.allRecipe.edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,

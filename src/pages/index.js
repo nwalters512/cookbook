@@ -10,8 +10,8 @@ export default ({ data }) => {
     <Layout>
       <SEO title="Home" />
       {recipes.map(recipe => (
-        <Link to={recipe.fields.slug}>
-          <h2 key={recipe.fields.slug}>{recipe.title}</h2>
+        <Link to={recipe.fields.slug} key={recipe.fields.slug}>
+          <h2>{recipe.title}</h2>
         </Link>
       ))}
     </Layout>
