@@ -10,9 +10,14 @@ export default ({ data }) => {
     <Layout>
       <SEO title="Home" />
       {recipes.map(recipe => (
-        <Link to={recipe.fields.slug} key={recipe.fields.slug}>
-          <h2>{recipe.title}</h2>
-        </Link>
+        <article className="mb-4">
+          <Link to={recipe.fields.slug} key={recipe.fields.slug}>
+            <h2 className="text-2xl hover:text-pink-800 focus:text-pink-800">
+              {recipe.title}
+            </h2>
+          </Link>
+          {recipe.description && <p>{recipe.description}</p>}
+        </article>
       ))}
     </Layout>
   )
@@ -20,10 +25,11 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    allRecipe {
+    allRecipe(sort: { fields: [title] }) {
       edges {
         node {
           title
+          description
           fields {
             slug
           }

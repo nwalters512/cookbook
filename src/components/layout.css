@@ -3,5 +3,31 @@
 @tailwind utilities;
 
 body {
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Source Sans Pro", serif;
+}
+
+.hanging-indent {
+  padding-inline-start: theme("spacing.4");
+  text-indent: calc(-1 * theme("spacing.4"));
+}
+
+ol.step-list {
+  counter-reset: step;
+}
+
+li.step:before {
+  content: "Step " counter(step);
+  counter-increment: step;
+  text-transform: uppercase;
+  display: block;
+  @apply text-xs font-bold -mb-1;
+}
+
+li.step {
+  @apply mb-2;
+}
+
+ul.list-dash li:before {
+  content: "\2014";
+  padding-inline-end: theme("spacing.2");
 }

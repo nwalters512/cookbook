@@ -11,7 +11,8 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: `Cormorant Garamond`,
+            family: `Source Sans Pro`,
+            variants: [`400`, `700`],
           },
         ],
       },
