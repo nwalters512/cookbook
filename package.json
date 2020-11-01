@@ -1,15 +1,14 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "@nwalters512/cookbook",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "description": "My personal recipes as structured data, plus an app to view them",
+  "author": "Nathan Walters <nwalters512@gmail.com>",
   "dependencies": {
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.34",
     "gatsby-plugin-manifest": "^2.2.31",
     "gatsby-plugin-offline": "^3.0.27",
-    "gatsby-plugin-postcss": "^2.1.18",
+    "gatsby-plugin-postcss": "^3.0.4",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
     "gatsby-plugin-react-helmet": "^3.1.16",
     "gatsby-plugin-sharp": "^2.3.5",
@@ -17,19 +16,14 @@
     "gatsby-transformer-sharp": "^2.3.7",
     "gatsby-transformer-yaml": "^2.2.20",
     "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.1"
-  },
-  "devDependencies": {
-    "husky": "^3.1.0",
-    "prettier": "1.19.1",
-    "pretty-quick": "^2.0.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "husky": "^4.3.0",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.1.0",
     "tailwindcss": "^1.1.4"
   },
-  "keywords": [
-    "gatsby"
-  ],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
@@ -37,15 +31,11 @@
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "clean": "gatsby clean"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/nwalters512/cookbook"
   },
   "husky": {
     "hooks": {
