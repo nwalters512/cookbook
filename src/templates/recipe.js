@@ -10,10 +10,10 @@ const SectionTitle = ({ children }) => (
 
 export default ({ data }) => {
   const { recipe } = data
-  const ingredients = recipe.ingredients.map(ingredient => (
+  const ingredients = recipe.ingredients.map((ingredient) => (
     <li className="hanging-indent">{ingredient}</li>
   ))
-  const steps = recipe.steps.map(step => <li className="step">{step}</li>)
+  const steps = recipe.steps.map((step) => <li className="step">{step}</li>)
   return (
     <Layout>
       <SEO title={recipe.title} description={recipe.description} />
@@ -27,7 +27,7 @@ export default ({ data }) => {
         <div className="italic">
           <SectionTitle>Notes</SectionTitle>
           <ul className="list-dash">
-            {recipe.notes.map(note => (
+            {recipe.notes.map((note) => (
               <li>{note}</li>
             ))}
           </ul>
