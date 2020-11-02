@@ -13,14 +13,14 @@ const SEO: React.FC<SEOProps> = ({ description, title }) => {
   return (
     <Head>
       <title>{metaTitle}</title>
-      <meta property="description" content={metaDescription} />
-      <meta property="og:title" content={metaTitle} />
-      <meta property="og:description" content={metaDescription} />
-      <meta property="og:type" content="website" />
-      <meta property="twitter:card" content="summary" />
-      <meta property="twitter:creator" content="@waltersn512" />
-      <meta property="twitter:title" content={metaTitle} />
-      <meta property="twitter:description" content={metaDescription} />
+      <meta name="description" content={metaDescription} />
+      <meta name="og:title" content={metaTitle} />
+      <meta name="og:description" content={metaDescription} />
+      <meta name="og:type" content="website" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:creator" content="@waltersn512" />
+      <meta name="twitter:title" content={metaTitle} />
+      <meta name="twitter:description" content={metaDescription} />
     </Head>
   )
 }
