@@ -13,7 +13,7 @@ const Index: React.FC<IndexProps> = ({ recipes }) => {
     <React.Fragment>
       {recipes.map((recipe) => (
         <article className="mb-4">
-          <Link href={`/recipe/${recipe.slug}`}>
+          <Link href={`/recipes/${recipe.slug}`}>
             <h2 className="text-2xl hover:text-pink-800 focus:text-pink-800">
               {recipe.title}
             </h2>

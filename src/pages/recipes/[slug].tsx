@@ -30,8 +30,7 @@ const Recipe: React.FC<RecipeProps> = ({
   notes,
 }) => {
   return (
-    <Layout>
-      <SEO title={title} description={description} />
+    <React.Fragment>
       <h1 className="text-5xl ">{title}</h1>
       {description && <blockquote>{description}</blockquote>}
       <SectionTitle>Ingredients</SectionTitle>
@@ -56,7 +55,7 @@ const Recipe: React.FC<RecipeProps> = ({
           </ul>
         </div>
       )}
-    </Layout>
+    </React.Fragment>
   )
 }
 
