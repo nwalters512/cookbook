@@ -5,15 +5,16 @@ import Header from "../components/header"
 
 import "../tailwind.css"
 import SEO from "../components/seo"
+import ContentContainer from "../components/content-container"
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <React.Fragment>
       <SEO />
       <Header title="Nathan's Cookbook" />
-      <div className="w-full max-w-screen-md mx-auto mt-3">
+      <ContentContainer>
         <Component {...pageProps} />
-      </div>
+      </ContentContainer>
     </React.Fragment>
   )
 }
