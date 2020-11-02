@@ -4,6 +4,7 @@ import { GetStaticPaths, GetStaticProps } from "next"
 import fs from "fs-extra"
 import path from "path"
 import yaml from "js-yaml"
+import SEO from "../../components/seo"
 
 interface RecipePathsParams {
   slug: string
@@ -31,6 +32,7 @@ const Recipe: React.FC<RecipeProps> = ({
 }) => {
   return (
     <React.Fragment>
+      <SEO title={title} description={description} />
       <h1 className="text-5xl ">{title}</h1>
       {description && <blockquote>{description}</blockquote>}
       <SectionTitle>Ingredients</SectionTitle>

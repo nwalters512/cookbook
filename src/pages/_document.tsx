@@ -8,7 +8,7 @@ class Document extends NextDocument {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <link
             href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
