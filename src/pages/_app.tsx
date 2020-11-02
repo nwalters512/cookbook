@@ -9,7 +9,9 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <React.Fragment>
       <Header title="Nathan's Cookbook" />
-      <Component {...pageProps} />
+      <div className="w-full max-w-screen-md mx-auto">
+        <Component {...pageProps} />
+      </div>
     </React.Fragment>
   )
 }

@@ -5,30 +5,12 @@ interface HeaderProps {
   title: string
 }
 
-const Header = ({ title }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
+const Header: React.FC<HeaderProps> = ({ title }) => (
+  <header className="bg-purple-900">
+    <div className="w-full max-w-screen-md mx-auto">
+      <h1 className="py-6">
         <Link href="/">
-          <a
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            {title}
-          </a>
+          <a className="text-white no-underline">{title}</a>
         </Link>
       </h1>
     </div>
