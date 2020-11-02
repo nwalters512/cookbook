@@ -37,8 +37,8 @@
     "clean": "gatsby clean",
     "gatsby:develop": "gatsby develop",
     "dev": "next dev",
-    "lint:fix": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md\"",
-    "lint": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "serve": "gatsby serve",
     "gatsby:start": "yarn develop",
     "start": "next start"
