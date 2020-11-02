@@ -7,6 +7,7 @@
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "@types/fs-extra": "^9.0.2",
     "@types/js-yaml": "^3.12.5",
+    "@types/react": "^16.9.55",
     "fs-extra": "^9.0.1",
     "husky": "^4.3.0",
     "js-yaml": "^3.14.0",
