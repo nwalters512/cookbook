@@ -12,7 +12,7 @@ const SEO: React.FC<SEOProps> = ({ description, title }) => {
 
   return (
     <Head>
-      <title>${metaTitle}</title>
+      <title>{metaTitle}</title>
       <meta property="description" content={metaDescription} />
       <meta property="og:title" content={metaTitle} />
       <meta property="og:description" content={metaDescription} />
