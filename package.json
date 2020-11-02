@@ -4,6 +4,7 @@
   "description": "My personal recipes as structured data, plus an app to view them",
   "author": "Nathan Walters <nwalters512@gmail.com>",
   "dependencies": {
+    "@fullhuman/postcss-purgecss": "^3.0.0",
     "@types/fs-extra": "^9.0.2",
     "@types/js-yaml": "^3.12.5",
     "fs-extra": "^9.0.1",
