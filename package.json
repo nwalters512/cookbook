@@ -4,6 +4,9 @@
   "description": "My personal recipes as structured data, plus an app to view them",
   "author": "Nathan Walters <nwalters512@gmail.com>",
   "dependencies": {
+    "@types/fs-extra": "^9.0.2",
+    "@types/js-yaml": "^3.12.5",
+    "fs-extra": "^9.0.1",
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.34",
     "gatsby-plugin-manifest": "^2.2.31",
@@ -16,6 +19,7 @@
     "gatsby-transformer-sharp": "^2.3.7",
     "gatsby-transformer-yaml": "^2.2.20",
     "husky": "^4.3.0",
+    "js-yaml": "^3.14.0",
     "next": "^10.0.0",
     "prettier": "^2.1.2",
     "pretty-quick": "^3.1.0",
