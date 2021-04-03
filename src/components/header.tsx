@@ -9,9 +9,9 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ title }) => (
   <header className="bg-purple-700">
     <ContentContainer>
-      <h1 className="py-6">
+      <h1 className="py-4">
         <Link href="/">
-          <a className="text-white no-underline">{title}</a>
+          <a className="text-white text-xl font-bold no-underline">{title}</a>
         </Link>
       </h1>
     </ContentContainer>
