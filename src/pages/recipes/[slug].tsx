@@ -72,7 +72,7 @@ export const getStaticProps: GetStaticProps<
     path.join(process.cwd(), "recipes", slug, "index.yml"),
     "utf-8"
   )
-  const parsedRecipeData = yaml.safeLoad(recipeData) as RecipeProps
+  const parsedRecipeData = yaml.load(recipeData) as RecipeProps
   return { props: parsedRecipeData }
 }
 
