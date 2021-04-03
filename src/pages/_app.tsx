@@ -13,7 +13,9 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       <SEO />
       <Header title="Nathan's Cookbook" />
       <ContentContainer>
-        <Component {...pageProps} />
+        <div className="my-8">
+          <Component {...pageProps} />
+        </div>
       </ContentContainer>
     </React.Fragment>
   )
