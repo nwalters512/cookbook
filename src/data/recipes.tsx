@@ -31,7 +31,7 @@ export const getAllRecipes = async (): Promise<RecipeData> => {
         path.join(process.cwd(), "recipes", slug, "index.yml"),
         "utf-8"
       )
-      const parsedData = yaml.safeLoad(rawData) as Recipe
+      const parsedData = yaml.load(rawData) as Recipe
       return {
         ...parsedData,
         slug,
