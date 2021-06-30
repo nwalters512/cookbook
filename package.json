@@ -26,13 +26,17 @@
   "scripts": {
     "build": "tsc && next build",
     "dev": "next dev",
-    "lint": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "lint:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint": "next lint && prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint:fix": "next lint --fix && prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "next start",
     "prepare": "husky install"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/nwalters512/cookbook"
+  },
+  "devDependencies": {
+    "eslint": "^7.29.0",
+    "eslint-config-next": "^11.0.1"
   }
 }
