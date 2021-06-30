@@ -38,7 +38,9 @@ const Recipe: React.FC<RecipeProps> = ({
       <SectionTitle>Ingredients</SectionTitle>
       <ul>
         {ingredients.map((ingredient) => (
-          <li className="hanging-indent">{ingredient}</li>
+          <li className="hanging-indent" key={ingredient}>
+            {ingredient}
+          </li>
         ))}
       </ul>
       <SectionTitle>Directions</SectionTitle>
