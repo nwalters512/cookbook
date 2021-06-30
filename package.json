@@ -26,8 +26,8 @@
   "scripts": {
     "build": "tsc && next build",
     "dev": "next dev",
+    "format": "next lint --fix && prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint": "next lint && prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "lint:fix": "next lint --fix && prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "next start",
     "prepare": "husky install"
   },

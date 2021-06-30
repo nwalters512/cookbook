@@ -46,7 +46,7 @@ const Recipe: React.FC<RecipeProps> = ({
       <SectionTitle>Directions</SectionTitle>
       <ol className="step-list">
         {steps.map((step) => (
-          <li className="step" key="step">
+          <li className="step" key={step}>
             {step}
           </li>
         ))}
@@ -56,7 +56,7 @@ const Recipe: React.FC<RecipeProps> = ({
           <SectionTitle>Notes</SectionTitle>
           <ul className="list-dash">
             {notes.map((note) => (
-              <li key="note">{note}</li>
+              <li key={note}>{note}</li>
             ))}
           </ul>
         </div>
