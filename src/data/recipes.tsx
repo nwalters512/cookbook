@@ -25,19 +25,21 @@ let cache: RecipeData = null
 export const getAllRecipes = async (): Promise<RecipeData> => {
   if (cache) return cache
   const recipes = await fs.readdir(path.join(process.cwd(), "recipes"))
-  const recipeData = await Promise.all(
-    recipes.map(async (slug) => {
-      const rawData = await fs.readFile(
-        path.join(process.cwd(), "recipes", slug, "index.yml"),
-        "utf-8"
-      )
-      const parsedData = yaml.load(rawData) as Recipe
-      return {
-        ...parsedData,
-        slug,
-      }
-    })
-  )
+  const recipeData = (
+    await Promise.all(
+      recipes.map(async (slug) => {
+        const rawData = await fs.readFile(
+          path.join(process.cwd(), "recipes", slug, "index.yml"),
+          "utf-8"
+        )
+        const parsedData = yaml.load(rawData) as Recipe
+        return {
+          ...parsedData,
+          slug,
+        }
+      })
+    )
+  ).sort((a, b) => a.title.localeCompare(b.title))
   const recipesBySlug = recipeData.reduce(
     (acc, data) => ({
       ...acc,

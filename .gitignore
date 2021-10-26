@@ -9,3 +9,6 @@ node_modules/
 
 # Next.js files
 .next/
+
+# TypeScript files
+tsconfig.tsbuildinfo
