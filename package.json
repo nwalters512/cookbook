@@ -8,7 +8,7 @@
     "@types/fs-extra": "^9.0.13",
     "@types/js-yaml": "^4.0.4",
     "@types/react": "^17.0.33",
-    "autoprefixer": "^10.3.7",
+    "autoprefixer": "^10.4.2",
     "fs-extra": "^10.0.0",
     "husky": "^6.0.0",
     "js-yaml": "^4.1.0",
