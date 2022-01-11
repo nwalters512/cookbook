@@ -5,6 +5,8 @@ import fs from "fs-extra"
 import path from "path"
 import yaml from "js-yaml"
 import SEO from "../../components/seo"
+import { useCheckboxes } from "../../hooks/useCheckboxes"
+import { Checkbox } from "../../components/checkbox"
 
 interface RecipePathsParams {
   slug: string
@@ -19,6 +21,7 @@ interface RecipeProps {
   title: string
   description?: string
   ingredients: string[]
+  slug: string
   steps: string[]
   notes?: string[]
 }
@@ -27,21 +30,43 @@ const Recipe: React.FC<RecipeProps> = ({
   title,
   description,
   ingredients,
+  slug,
   steps,
   notes,
 }) => {
+  const { checked, handleToggle, clearChecked } = useCheckboxes(slug)
+
   return (
     <React.Fragment>
       <SEO title={title} description={description} />
       <h1 className="text-5xl ">{title}</h1>
       {description && <blockquote>{description}</blockquote>}
       <SectionTitle>Ingredients</SectionTitle>
+      <button
+        className="text-purple-700 font-bold underline underline-offset-4 mb-2"
+        onClick={() => clearChecked()}
+      >
+        Chear checkboxes
+      </button>
       <ul>
-        {ingredients.map((ingredient) => (
-          <li className="hanging-indent" key={ingredient}>
-            {ingredient}
-          </li>
-        ))}
+        {ingredients.map((ingredient, i) => {
+          const ingredientKey = `${i}-${ingredient}`
+          const isChecked = !!checked[ingredientKey]
+          return (
+            <li className="flex flex-row items-center mb-2" key={ingredient}>
+              <Checkbox
+                className="mr-2"
+                checked={isChecked}
+                onChange={(e) => {
+                  handleToggle(ingredientKey)
+                }}
+              />
+              <span className={isChecked ? "text-gray-400" : ""}>
+                {ingredient}
+              </span>
+            </li>
+          )
+        })}
       </ul>
       <SectionTitle>Directions</SectionTitle>
       <ol className="step-list">
@@ -77,7 +102,7 @@ export const getStaticProps: GetStaticProps<
     "utf-8"
   )
   const parsedRecipeData = yaml.load(recipeData) as RecipeProps
-  return { props: parsedRecipeData }
+  return { props: { slug, ...parsedRecipeData } }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
