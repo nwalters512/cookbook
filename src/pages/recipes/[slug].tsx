@@ -46,7 +46,7 @@ const Recipe: React.FC<RecipeProps> = ({
         className="text-purple-700 font-bold underline underline-offset-4 mb-2"
         onClick={() => clearChecked()}
       >
-        Chear checkboxes
+        Clear checkboxes
       </button>
       <ul>
         {ingredients.map((ingredient, i) => {
