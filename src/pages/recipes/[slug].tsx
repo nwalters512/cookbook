@@ -67,16 +67,18 @@ const Recipe: React.FC<RecipeProps> = ({
 
 export default Recipe
 
-export const getStaticProps: GetStaticProps<RecipeProps, RecipePathsParams> =
-  async (context) => {
-    const { slug } = context.params
-    const recipeData = await fs.readFile(
-      path.join(process.cwd(), "recipes", slug, "index.yml"),
-      "utf-8"
-    )
-    const parsedRecipeData = yaml.load(recipeData) as RecipeProps
-    return { props: parsedRecipeData }
-  }
+export const getStaticProps: GetStaticProps<
+  RecipeProps,
+  RecipePathsParams
+> = async (context) => {
+  const { slug } = context.params
+  const recipeData = await fs.readFile(
+    path.join(process.cwd(), "recipes", slug, "index.yml"),
+    "utf-8"
+  )
+  const parsedRecipeData = yaml.load(recipeData) as RecipeProps
+  return { props: parsedRecipeData }
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const recipes = await fs.readdir(path.join(process.cwd(), "recipes"))
