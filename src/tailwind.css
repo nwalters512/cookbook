@@ -6,11 +6,6 @@ body {
   font-family: "Source Sans Pro", serif;
 }
 
-/* .hanging-indent {
-  padding-inline-start: theme("spacing.4");
-  text-indent: calc(-1 * theme("spacing.4"));
-} */
-
 ol.step-list {
   counter-reset: step;
 }
