@@ -5,6 +5,8 @@ import fs from "fs-extra"
 import path from "path"
 import yaml from "js-yaml"
 import SEO from "../../components/seo"
+import { useCheckboxes } from "../../hooks/useCheckboxes"
+import { Checkbox } from "../../components/checkbox"
 
 interface RecipePathsParams {
   slug: string
@@ -19,6 +21,7 @@ interface RecipeProps {
   title: string
   description?: string
   ingredients: string[]
+  slug: string
   steps: string[]
   notes?: string[]
 }
@@ -27,9 +30,12 @@ const Recipe: React.FC<RecipeProps> = ({
   title,
   description,
   ingredients,
+  slug,
   steps,
   notes,
 }) => {
+  const { checked, handleToggle } = useCheckboxes(slug)
+
   return (
     <React.Fragment>
       <SEO title={title} description={description} />
@@ -37,11 +43,21 @@ const Recipe: React.FC<RecipeProps> = ({
       {description && <blockquote>{description}</blockquote>}
       <SectionTitle>Ingredients</SectionTitle>
       <ul>
-        {ingredients.map((ingredient) => (
-          <li className="hanging-indent" key={ingredient}>
-            {ingredient}
-          </li>
-        ))}
+        {ingredients.map((ingredient, i) => {
+          const ingredientKey = `${i}-${ingredient}`
+          return (
+            <li className="flex flex-row items-center mb-2" key={ingredient}>
+              <Checkbox
+                className="mr-2"
+                checked={!!checked[ingredientKey]}
+                onChange={(e) => {
+                  handleToggle(ingredientKey)
+                }}
+              />
+              <div>{ingredient}</div>
+            </li>
+          )
+        })}
       </ul>
       <SectionTitle>Directions</SectionTitle>
       <ol className="step-list">
@@ -77,7 +93,7 @@ export const getStaticProps: GetStaticProps<
     "utf-8"
   )
   const parsedRecipeData = yaml.load(recipeData) as RecipeProps
-  return { props: parsedRecipeData }
+  return { props: { slug, ...parsedRecipeData } }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
