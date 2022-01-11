@@ -13,8 +13,13 @@ export function useCheckboxes(key: string) {
     })
   }
 
+  const clearChecked = () => {
+    setChecked({})
+  }
+
   return {
     checked,
+    clearChecked,
     handleToggle,
   }
 }

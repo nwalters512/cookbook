@@ -34,7 +34,7 @@ const Recipe: React.FC<RecipeProps> = ({
   steps,
   notes,
 }) => {
-  const { checked, handleToggle } = useCheckboxes(slug)
+  const { checked, handleToggle, clearChecked } = useCheckboxes(slug)
 
   return (
     <React.Fragment>
@@ -42,19 +42,28 @@ const Recipe: React.FC<RecipeProps> = ({
       <h1 className="text-5xl ">{title}</h1>
       {description && <blockquote>{description}</blockquote>}
       <SectionTitle>Ingredients</SectionTitle>
+      <button
+        className="text-purple-700 font-bold underline underline-offset-4 mb-2"
+        onClick={() => clearChecked()}
+      >
+        Chear checkboxes
+      </button>
       <ul>
         {ingredients.map((ingredient, i) => {
           const ingredientKey = `${i}-${ingredient}`
+          const isChecked = !!checked[ingredientKey]
           return (
             <li className="flex flex-row items-center mb-2" key={ingredient}>
               <Checkbox
                 className="mr-2"
-                checked={!!checked[ingredientKey]}
+                checked={isChecked}
                 onChange={(e) => {
                   handleToggle(ingredientKey)
                 }}
               />
-              <div>{ingredient}</div>
+              <span className={isChecked ? "text-gray-400" : ""}>
+                {ingredient}
+              </span>
             </li>
           )
         })}

@@ -23,12 +23,15 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         "w-4",
         "border",
         "border-gray-300",
-        "rounded-sm",
+        "rounded-md",
         "bg-white",
-        "checked:bg-blue-600",
-        "checked:border-blue-600",
+        "checked:bg-purple-700",
+        "checked:border-purple-700",
         "transition",
         "duration-200",
+        "cursor-pointer",
+        "focus:outline-none",
+        "focus-visible:border-black",
         className,
       ])}
     />
