@@ -13,7 +13,7 @@
     "fs-extra": "^10.0.0",
     "husky": "^7.0.4",
     "js-yaml": "^4.1.0",
-    "next": "^12.0.7",
+    "next": "^12.0.8",
     "postcss": "^8.3.11",
     "postcss-import": "^14.0.2",
     "prettier": "2.5.1",
