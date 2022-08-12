@@ -7,6 +7,7 @@ import yaml from "js-yaml"
 import SEO from "../../components/seo"
 import { useCheckboxes } from "../../hooks/useCheckboxes"
 import { Checkbox } from "../../components/checkbox"
+import { replaceFractionsWithUnicode } from "../../data/recipes"
 
 interface RecipePathsParams {
   slug: string
@@ -101,10 +102,13 @@ export const getStaticProps: GetStaticProps<
   RecipePathsParams
 > = async (context) => {
   const { slug } = context.params
-  const recipeData = await fs.readFile(
+  let recipeData = await fs.readFile(
     path.join(process.cwd(), "recipes", slug, "index.yml"),
     "utf-8"
   )
+  // Preconvert all fractions to their corresponding unicode characters
+  recipeData = replaceFractionsWithUnicode(recipeData)
+
   const parsedRecipeData = yaml.load(recipeData) as RecipeProps
   return { props: { slug, ...parsedRecipeData } }
 }
