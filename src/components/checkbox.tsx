@@ -21,6 +21,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         "appearance-none",
         "h-4",
         "w-4",
+        "shrink-0",
         "border",
         "border-gray-300",
         "rounded-md",
