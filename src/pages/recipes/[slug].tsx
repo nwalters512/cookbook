@@ -13,7 +13,11 @@ interface RecipePathsParams {
   [param: string]: any
 }
 
-const SectionTitle: React.FC = ({ children }) => (
+interface SectionTitleProps {
+  children: React.ReactNode
+}
+
+const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => (
   <h2 className="text-xl font-bold mt-4 mb-2">{children}</h2>
 )
 
