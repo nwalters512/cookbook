@@ -62,6 +62,8 @@ const UNITS = [
   "boxes",
   "package",
   "packages",
+  "carton",
+  "cartons",
   // Misc
   "clove",
   "cloves",
