@@ -80,7 +80,6 @@ const QUANTITY_AND_UNITS = new RegExp(
   `(${QUANTITY}?\\s*(?:(?:${UNITS})\\s+)*)?(.*)`,
   "i"
 )
-console.log(QUANTITY_AND_UNITS)
 
 function renderParenthesizedInfo(info: string): React.ReactNode {
   const match = info.match(/\([^\)]+\)/g)
