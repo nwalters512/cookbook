@@ -160,20 +160,19 @@ const Recipe: React.FC<RecipeProps> = ({
           const ingredientKey = `${i}-${ingredient}`
           const isChecked = !!checked[ingredientKey]
           return (
-            <li
-              className="flex flex-row items-center mb-2"
-              key={ingredient + i.toString()}
-            >
-              <Checkbox
-                className="mr-2"
-                checked={isChecked}
-                onChange={(e) => {
-                  handleToggle(ingredientKey)
-                }}
-              />
-              <span className={isChecked ? "text-slate-400" : ""}>
-                {renderIngredient(ingredient)}
-              </span>
+            <li className="mb-2" key={ingredient + i.toString()}>
+              <label className="flex flex-row items-center">
+                <Checkbox
+                  className="mr-2"
+                  checked={isChecked}
+                  onChange={(e) => {
+                    handleToggle(ingredientKey)
+                  }}
+                />
+                <span className={isChecked ? "text-slate-400" : ""}>
+                  {renderIngredient(ingredient)}
+                </span>
+              </label>
             </li>
           )
         })}
