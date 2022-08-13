@@ -171,7 +171,7 @@ const Recipe: React.FC<RecipeProps> = ({
                   handleToggle(ingredientKey)
                 }}
               />
-              <span className={isChecked ? "text-gray-400" : ""}>
+              <span className={isChecked ? "text-slate-400" : ""}>
                 {renderIngredient(ingredient)}
               </span>
             </li>
