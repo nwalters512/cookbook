@@ -14,11 +14,9 @@ const Index: React.FC<IndexProps> = ({ recipes }) => {
       {recipes.map((recipe) => (
         <article className="mb-4" key={recipe.slug}>
           <Link href={`/recipes/${recipe.slug}`}>
-            <a>
-              <h2 className="text-2xl hover:text-pink-800 focus:text-pink-800">
-                {recipe.title}
-              </h2>
-            </a>
+            <h2 className="text-2xl hover:text-pink-800 focus:text-pink-800">
+              {recipe.title}
+            </h2>
           </Link>
           {recipe.description && <p>{recipe.description}</p>}
         </article>
