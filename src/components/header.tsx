@@ -10,8 +10,8 @@ const Header: React.FC<HeaderProps> = ({ title }) => (
   <header className="bg-purple-700">
     <ContentContainer>
       <h1 className="py-4">
-        <Link href="/">
-          <a className="text-white text-xl font-bold no-underline">{title}</a>
+        <Link href="/" className="text-white text-xl font-bold no-underline">
+          {title}
         </Link>
       </h1>
     </ContentContainer>
