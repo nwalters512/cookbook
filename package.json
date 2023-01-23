@@ -7,7 +7,7 @@
     "@rehooks/local-storage": "^2.4.4",
     "@types/fs-extra": "^9.0.13",
     "@types/js-yaml": "^4.0.5",
-    "@types/react": "^18.0.24",
+    "@types/react": "^18.0.27",
     "autoprefixer": "^10.4.13",
     "classnames": "^2.3.2",
     "fs-extra": "^10.1.0",
