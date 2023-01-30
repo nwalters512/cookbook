@@ -37,7 +37,7 @@
     "url": "https://github.com/nwalters512/cookbook"
   },
   "devDependencies": {
-    "eslint": "^8.26.0",
+    "eslint": "^8.33.0",
     "eslint-config-next": "^13.0.0"
   }
 }
