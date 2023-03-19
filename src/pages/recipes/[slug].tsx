@@ -75,9 +75,15 @@ const UNITS = [
   "strips",
   "dash",
   "dashes",
+  "piece",
+  "pieces",
+  "sprig",
+  "sprigs",
 ].join("|")
+// We allow for parenthesized info in between the quantity and units.
+// This is useful for things like "2 (15oz) cans of chickpeas".
 const QUANTITY_AND_UNITS = new RegExp(
-  `(${QUANTITY}?\\s*(?:(?:${UNITS})\\s+)*)?(.*)`,
+  `(${QUANTITY}?\\s*(?:\\([^\)]*\\)\\s*)?(?:(?:${UNITS})\\s+)*)?(.*)`,
   "i"
 )
 
@@ -118,10 +124,10 @@ function renderIngredient(ingredient: string): React.ReactNode {
 
   return (
     <span>
-      <strong>{maybeQuantity}</strong> {renderParenthesizedInfo(match[2])}
+      <strong>{renderParenthesizedInfo(maybeQuantity)}</strong>{" "}
+      {renderParenthesizedInfo(match[2])}
     </span>
   )
-  return ingredient
 }
 
 interface RecipeProps {
