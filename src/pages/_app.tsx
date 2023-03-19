@@ -1,6 +1,6 @@
 import React from "react"
 import type { AppProps } from "next/app"
-import { Source_Sans_Pro } from "@next/font/google"
+import { Source_Sans_Pro } from "next/font/google"
 
 import Header from "../components/header"
 
