@@ -4,7 +4,6 @@
   "description": "My personal recipes as structured data, plus an app to view them",
   "author": "Nathan Walters <nwalters512@gmail.com>",
   "dependencies": {
-    "@next/font": "^13.2.4",
     "@rehooks/local-storage": "^2.4.4",
     "@types/fs-extra": "^11.0.1",
     "@types/js-yaml": "^4.0.5",
