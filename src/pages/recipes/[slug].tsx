@@ -23,7 +23,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => (
   <h2 className="text-xl font-bold mt-4 mb-2 uppercase">{children}</h2>
 )
 
-const NUMBER = "\\d+"
+const NUMBER = "\\d+(?:\\.\\d+)?"
 const FRACTION = `${NUMBER}\/${NUMBER}`
 const UNICODE_FRACTION = "[\\u00BC-\\u00BE\\u2150-\\u215F]"
 const MIXED_FRACTION = `(?:${NUMBER}\\s+(?:${FRACTION}|${UNICODE_FRACTION}))`
