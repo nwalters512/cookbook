@@ -20,7 +20,7 @@ interface SectionTitleProps {
 }
 
 const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => (
-  <h2 className="text-xl font-bold mt-4 mb-3 uppercase text-orange-600 dark:text-orange-400 border-b-2 border-orange-200 dark:border-orange-800 pb-1">
+  <h2 className="text-xl font-bold mb-3 uppercase text-orange-600 dark:text-orange-400 border-b-2 border-orange-200 dark:border-orange-800 pb-1">
     {children}
   </h2>
 )
