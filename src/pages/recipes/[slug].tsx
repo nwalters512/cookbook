@@ -154,8 +154,18 @@ const Recipe: React.FC<RecipeProps> = ({
   return (
     <div className="max-w-4xl mx-auto">
       <SEO title={title} description={description} />
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 mb-4">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+      <div
+        className={classNames(
+          "bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 mb-4",
+          !description && "mb-4"
+        )}
+      >
+        <h1
+          className={classNames(
+            "text-3xl md:text-4xl font-bold text-gray-900 dark:text-white",
+            description ? "mb-3" : "mb-0"
+          )}
+        >
           {title}
         </h1>
         {description && (
