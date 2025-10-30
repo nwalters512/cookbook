@@ -20,7 +20,9 @@ interface SectionTitleProps {
 }
 
 const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => (
-  <h2 className="text-xl font-bold mt-4 mb-2 uppercase">{children}</h2>
+  <h2 className="text-2xl font-bold mt-8 mb-4 uppercase text-orange-600 dark:text-orange-400 border-b-2 border-orange-200 dark:border-orange-800 pb-2">
+    {children}
+  </h2>
 )
 
 const NUMBER = "\\d+(?:\\.\\d+)?"
@@ -107,7 +109,7 @@ function renderParenthesizedInfo(info: string): React.ReactNode {
     <span
       key={`${i}-${c}`}
       className={classNames({
-        "text-slate-400": c.startsWith("("),
+        "text-gray-500 dark:text-gray-400": c.startsWith("("),
       })}
     >
       {c}
@@ -150,58 +152,87 @@ const Recipe: React.FC<RecipeProps> = ({
   const { checked, handleToggle, clearChecked } = useCheckboxes(slug)
 
   return (
-    <React.Fragment>
+    <div className="max-w-4xl mx-auto">
       <SEO title={title} description={description} />
-      <h1 className="text-5xl ">{title}</h1>
-      {description && <blockquote>{description}</blockquote>}
-      <SectionTitle>Ingredients</SectionTitle>
-      <button
-        className="text-purple-700 font-bold underline underline-offset-4 mb-2"
-        onClick={() => clearChecked()}
-      >
-        Clear checkboxes
-      </button>
-      <ul>
-        {ingredients.map((ingredient, i) => {
-          const ingredientKey = `${i}-${ingredient}`
-          const isChecked = !!checked[ingredientKey]
-          return (
-            <li className="mb-2" key={ingredient + i.toString()}>
-              <label className="flex flex-row items-center">
-                <Checkbox
-                  className="mr-2"
-                  checked={isChecked}
-                  onChange={(e) => {
-                    handleToggle(ingredientKey)
-                  }}
-                />
-                <span className={isChecked ? "text-slate-400" : ""}>
-                  {renderIngredient(ingredient)}
-                </span>
-              </label>
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          {title}
+        </h1>
+        {description && (
+          <blockquote className="text-lg text-gray-600 dark:text-gray-300 italic border-l-4 border-orange-500 pl-4 py-2">
+            {description}
+          </blockquote>
+        )}
+      </div>
+
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+        <SectionTitle>Ingredients</SectionTitle>
+        <button
+          className="mb-4 px-4 py-2 bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 text-white font-semibold rounded-lg transition-colors shadow-sm"
+          onClick={() => clearChecked()}
+        >
+          Clear checkboxes
+        </button>
+        <ul className="space-y-3">
+          {ingredients.map((ingredient, i) => {
+            const ingredientKey = `${i}-${ingredient}`
+            const isChecked = !!checked[ingredientKey]
+            return (
+              <li
+                className="group hover:bg-orange-50 dark:hover:bg-gray-700 rounded-lg p-2 transition-colors"
+                key={ingredient + i.toString()}
+              >
+                <label className="flex flex-row items-center cursor-pointer">
+                  <Checkbox
+                    className="mr-3"
+                    checked={isChecked}
+                    onChange={(e) => {
+                      handleToggle(ingredientKey)
+                    }}
+                  />
+                  <span
+                    className={
+                      isChecked
+                        ? "text-gray-400 dark:text-gray-500 line-through"
+                        : "text-gray-800 dark:text-gray-200"
+                    }
+                  >
+                    {renderIngredient(ingredient)}
+                  </span>
+                </label>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+        <SectionTitle>Directions</SectionTitle>
+        <ol className="step-list space-y-6">
+          {steps.map((step, i) => (
+            <li
+              className="step text-gray-800 dark:text-gray-200 leading-relaxed"
+              key={step}
+            >
+              {step}
             </li>
-          )
-        })}
-      </ul>
-      <SectionTitle>Directions</SectionTitle>
-      <ol className="step-list">
-        {steps.map((step) => (
-          <li className="step" key={step}>
-            {step}
-          </li>
-        ))}
-      </ol>
+          ))}
+        </ol>
+      </div>
+
       {notes && (
-        <div className="italic">
+        <div className="bg-orange-50 dark:bg-gray-800 rounded-xl shadow-lg p-8">
           <SectionTitle>Notes</SectionTitle>
-          <ul className="list-dash">
+          <ul className="list-dash text-gray-700 dark:text-gray-300 space-y-2">
             {notes.map((note) => (
-              <li key={note}>{note}</li>
+              <li key={note} className="italic">
+                {note}
+              </li>
             ))}
           </ul>
         </div>
       )}
-    </React.Fragment>
+    </div>
   )
 }
 

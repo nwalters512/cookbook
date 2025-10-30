@@ -13,16 +13,17 @@ li.step:before {
   counter-increment: step;
   text-transform: uppercase;
   display: block;
-  @apply text-xs font-bold -mb-1;
+  @apply text-sm font-bold mb-2 text-orange-600 dark:text-orange-400;
 }
 
 li.step {
-  @apply mb-2;
+  @apply mb-4 pl-0;
 }
 
 ul.list-dash li:before {
   content: "\2014";
   padding-inline-end: theme("spacing.2");
+  @apply text-orange-600 dark:text-orange-400;
 }
 
 .checkbox {
