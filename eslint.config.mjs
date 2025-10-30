@@ -1,10 +1,10 @@
 import nextConfig from "eslint-config-next"
 
 const eslintConfig = [
-  ...nextConfig,
   {
     ignores: [".yarn/**", ".next/**", "node_modules/**"],
   },
+  ...nextConfig,
 ]
 
 export default eslintConfig

@@ -28,8 +28,8 @@
   "scripts": {
     "build": "tsc && next build --turbo",
     "dev": "next dev --turbo",
-    "format": "eslint . --ext .js,.jsx,.ts,.tsx --fix && prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx && prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format": "eslint . --fix && prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint": "eslint . && prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "next start",
     "prepare": "husky install"
   },
