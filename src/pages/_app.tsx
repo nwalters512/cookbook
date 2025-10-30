@@ -15,9 +15,7 @@ const sourceSans3 = Source_Sans_3({
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <div
-      className={`${sourceSans3.className} min-h-screen bg-white dark:bg-gray-900 transition-colors`}
-    >
+    <div className={sourceSans3.className}>
       <SEO />
       <Header title="Nathan's Cookbook" />
       <ContentContainer>
