@@ -13,12 +13,19 @@ const Index: React.FC<IndexProps> = ({ recipes }) => {
     <React.Fragment>
       {recipes.map((recipe) => (
         <article className="mb-4" key={recipe.slug}>
-          <Link href={`/recipes/${recipe.slug}`}>
-            <h2 className="text-2xl hover:text-pink-800 focus:text-pink-800">
+          <h2 className="text-2xl">
+            <Link
+              href={`/recipes/${recipe.slug}`}
+              className="hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+            >
               {recipe.title}
-            </h2>
-          </Link>
-          {recipe.description && <p>{recipe.description}</p>}
+            </Link>
+          </h2>
+          {recipe.description && (
+            <p className="text-gray-600 dark:text-gray-400">
+              {recipe.description}
+            </p>
+          )}
         </article>
       ))}
     </React.Fragment>
