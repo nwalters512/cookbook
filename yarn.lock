@@ -693,7 +693,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nwalters512/cookbook@workspace:."
   dependencies:
-    "@eslint/eslintrc": "npm:^3.3.1"
     "@rehooks/local-storage": "npm:^2.4.5"
     "@tailwindcss/postcss": "npm:^4.0.6"
     "@types/fs-extra": "npm:^11.0.4"
