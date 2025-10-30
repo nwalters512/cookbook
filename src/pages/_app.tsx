@@ -16,12 +16,12 @@ const sourceSans3 = Source_Sans_3({
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <div
-      className={`${sourceSans3.className} min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors`}
+      className={`${sourceSans3.className} min-h-screen bg-white dark:bg-gray-900 transition-colors`}
     >
       <SEO />
       <Header title="Nathan's Cookbook" />
       <ContentContainer>
-        <main className="my-8">
+        <main className="my-6">
           <Component {...pageProps} />
         </main>
       </ContentContainer>

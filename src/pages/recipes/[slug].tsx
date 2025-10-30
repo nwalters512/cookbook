@@ -20,7 +20,7 @@ interface SectionTitleProps {
 }
 
 const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => (
-  <h2 className="text-2xl font-bold mt-8 mb-4 uppercase text-orange-600 dark:text-orange-400 border-b-2 border-orange-200 dark:border-orange-800 pb-2">
+  <h2 className="text-xl font-bold mt-4 mb-3 uppercase text-orange-600 dark:text-orange-400 border-b-2 border-orange-200 dark:border-orange-800 pb-1">
     {children}
   </h2>
 )
@@ -154,37 +154,37 @@ const Recipe: React.FC<RecipeProps> = ({
   return (
     <div className="max-w-4xl mx-auto">
       <SEO title={title} description={description} />
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 mb-4">
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
           {title}
         </h1>
         {description && (
-          <blockquote className="text-lg text-gray-600 dark:text-gray-300 italic border-l-4 border-orange-500 pl-4 py-2">
+          <blockquote className="text-base text-gray-600 dark:text-gray-300 italic border-l-4 border-orange-500 pl-3 py-1">
             {description}
           </blockquote>
         )}
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 mb-4">
         <SectionTitle>Ingredients</SectionTitle>
         <button
-          className="mb-4 px-4 py-2 bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 text-white font-semibold rounded-lg transition-colors shadow-sm"
+          className="mb-3 px-3 py-2 bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 text-white text-sm font-semibold rounded-md transition-colors"
           onClick={() => clearChecked()}
         >
           Clear checkboxes
         </button>
-        <ul className="space-y-3">
+        <ul className="space-y-2">
           {ingredients.map((ingredient, i) => {
             const ingredientKey = `${i}-${ingredient}`
             const isChecked = !!checked[ingredientKey]
             return (
               <li
-                className="group hover:bg-orange-50 dark:hover:bg-gray-700 rounded-lg p-2 transition-colors"
+                className="group hover:bg-orange-50 dark:hover:bg-gray-700 rounded-md p-1.5 transition-colors"
                 key={ingredient + i.toString()}
               >
                 <label className="flex flex-row items-center cursor-pointer">
                   <Checkbox
-                    className="mr-3"
+                    className="mr-2"
                     checked={isChecked}
                     onChange={(e) => {
                       handleToggle(ingredientKey)
@@ -206,9 +206,9 @@ const Recipe: React.FC<RecipeProps> = ({
         </ul>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 mb-4">
         <SectionTitle>Directions</SectionTitle>
-        <ol className="step-list space-y-6">
+        <ol className="step-list space-y-4">
           {steps.map((step, i) => (
             <li
               className="step text-gray-800 dark:text-gray-200 leading-relaxed"
@@ -221,11 +221,11 @@ const Recipe: React.FC<RecipeProps> = ({
       </div>
 
       {notes && (
-        <div className="bg-orange-50 dark:bg-gray-800 rounded-xl shadow-lg p-8">
+        <div className="bg-orange-50 dark:bg-gray-800 rounded-lg shadow-md p-5">
           <SectionTitle>Notes</SectionTitle>
-          <ul className="list-dash text-gray-700 dark:text-gray-300 space-y-2">
+          <ul className="list-dash text-gray-700 dark:text-gray-300 space-y-1">
             {notes.map((note) => (
-              <li key={note} className="italic">
+              <li key={note} className="italic text-sm">
                 {note}
               </li>
             ))}
