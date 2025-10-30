@@ -183,7 +183,7 @@ const Recipe: React.FC<RecipeProps> = ({
         >
           Clear checkboxes
         </button>
-        <ul className="space-y-2 -mx-1.5">
+        <ul className="space-y-2 -m-1.5">
           {ingredients.map((ingredient, i) => {
             const ingredientKey = `${i}-${ingredient}`
             const isChecked = !!checked[ingredientKey]
