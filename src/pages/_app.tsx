@@ -15,15 +15,15 @@ const sourceSans3 = Source_Sans_3({
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <main className={sourceSans3.className}>
+    <div className={sourceSans3.className}>
       <SEO />
       <Header title="Nathan's Cookbook" />
       <ContentContainer>
-        <div className="my-8">
+        <main className="py-4">
           <Component {...pageProps} />
-        </div>
+        </main>
       </ContentContainer>
-    </main>
+    </div>
   )
 }
 
