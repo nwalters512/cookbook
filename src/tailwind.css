@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 body {
@@ -15,21 +16,11 @@ li.step:before {
   counter-increment: step;
   text-transform: uppercase;
   display: block;
-  @apply text-sm font-bold mb-2 text-orange-600 dark:text-orange-400;
-}
-
-li.step {
-  @apply pl-0;
+  @apply text-sm font-bold mb-1 text-orange-600 dark:text-orange-400;
 }
 
 li.step:not(:last-child) {
   @apply mb-4;
-}
-
-ul.list-dash li:before {
-  content: "\2014";
-  padding-inline-end: theme("spacing.2");
-  @apply text-orange-600 dark:text-orange-400;
 }
 
 .checkbox:checked {

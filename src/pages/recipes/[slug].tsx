@@ -154,94 +154,91 @@ const Recipe: React.FC<RecipeProps> = ({
   return (
     <div className="max-w-4xl mx-auto">
       <SEO title={title} description={description} />
-      <div
-        className={classNames(
-          "bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 mb-4",
-          !description && "mb-4"
-        )}
-      >
-        <h1
-          className={classNames(
-            "text-3xl md:text-4xl font-bold text-gray-900 dark:text-white",
-            description ? "mb-3" : "mb-0"
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 flex flex-col gap-6">
+        <div>
+          <h1
+            className={classNames(
+              "text-3xl md:text-4xl font-bold text-gray-900 dark:text-white",
+              description ? "mb-1" : "mb-0"
+            )}
+          >
+            {title}
+          </h1>
+          {description && (
+            <p className="text-base text-gray-600 dark:text-gray-300 italic">
+              {description}
+            </p>
           )}
-        >
-          {title}
-        </h1>
-        {description && (
-          <blockquote className="text-base text-gray-600 dark:text-gray-300 italic border-l-4 border-orange-500 pl-3 py-1">
-            {description}
-          </blockquote>
-        )}
-      </div>
+        </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 mb-4">
-        <SectionTitle>Ingredients</SectionTitle>
-        <button
-          className="mb-3 px-3 py-2 bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 text-white text-sm font-semibold rounded-md transition-colors"
-          onClick={() => clearChecked()}
-        >
-          Clear checkboxes
-        </button>
-        <ul className="space-y-2 -m-1.5">
-          {ingredients.map((ingredient, i) => {
-            const ingredientKey = `${i}-${ingredient}`
-            const isChecked = !!checked[ingredientKey]
-            return (
+        <div>
+          <SectionTitle>Ingredients</SectionTitle>
+          <ul className="space-y-2 -m-1.5">
+            {ingredients.map((ingredient, i) => {
+              const ingredientKey = `${i}-${ingredient}`
+              const isChecked = !!checked[ingredientKey]
+              return (
+                <li
+                  className="group hover:bg-orange-50 dark:hover:bg-gray-700 rounded-md p-1.5 transition-colors"
+                  key={ingredient + i.toString()}
+                >
+                  <label className="flex flex-row items-center cursor-pointer">
+                    <Checkbox
+                      className="mr-2"
+                      checked={isChecked}
+                      onChange={(e) => {
+                        handleToggle(ingredientKey)
+                      }}
+                    />
+                    <span
+                      className={
+                        isChecked
+                          ? "text-gray-400 dark:text-gray-500 line-through"
+                          : "text-gray-800 dark:text-gray-200"
+                      }
+                    >
+                      {renderIngredient(ingredient)}
+                    </span>
+                  </label>
+                </li>
+              )
+            })}
+          </ul>
+          <button
+            className="mt-3 text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 text-sm font-semibold underline transition-colors cursor-pointer"
+            onClick={() => clearChecked()}
+          >
+            Clear checkboxes
+          </button>
+        </div>
+
+        <div>
+          <SectionTitle>Directions</SectionTitle>
+          <ol className="step-list space-y-4">
+            {steps.map((step, i) => (
               <li
-                className="group hover:bg-orange-50 dark:hover:bg-gray-700 rounded-md p-1.5 transition-colors"
-                key={ingredient + i.toString()}
+                className="step text-gray-800 dark:text-gray-200 leading-relaxed"
+                key={step}
               >
-                <label className="flex flex-row items-center cursor-pointer">
-                  <Checkbox
-                    className="mr-2"
-                    checked={isChecked}
-                    onChange={(e) => {
-                      handleToggle(ingredientKey)
-                    }}
-                  />
-                  <span
-                    className={
-                      isChecked
-                        ? "text-gray-400 dark:text-gray-500 line-through"
-                        : "text-gray-800 dark:text-gray-200"
-                    }
-                  >
-                    {renderIngredient(ingredient)}
-                  </span>
-                </label>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 mb-4">
-        <SectionTitle>Directions</SectionTitle>
-        <ol className="step-list space-y-4">
-          {steps.map((step, i) => (
-            <li
-              className="step text-gray-800 dark:text-gray-200 leading-relaxed"
-              key={step}
-            >
-              {step}
-            </li>
-          ))}
-        </ol>
-      </div>
-
-      {notes && (
-        <div className="bg-orange-50 dark:bg-gray-800 rounded-lg shadow-md p-5">
-          <SectionTitle>Notes</SectionTitle>
-          <ul className="list-dash text-gray-700 dark:text-gray-300 space-y-1">
-            {notes.map((note) => (
-              <li key={note} className="italic text-sm">
-                {note}
+                {step}
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
-      )}
+
+        {notes && (
+          <div>
+            <SectionTitle>Notes</SectionTitle>
+            <ul className="text-gray-700 dark:text-gray-300 space-y-1 list-disc list-inside marker:text-orange-600">
+              {notes.map((note) => (
+                <li key={note} className="italic text-sm">
+                  {note}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

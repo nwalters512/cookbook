@@ -19,7 +19,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       <SEO />
       <Header title="Nathan's Cookbook" />
       <ContentContainer>
-        <main className="my-6">
+        <main className="py-4">
           <Component {...pageProps} />
         </main>
       </ContentContainer>

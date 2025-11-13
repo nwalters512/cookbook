@@ -10,7 +10,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ title }) => (
   <header className="bg-blue-600 dark:bg-blue-900 shadow-md">
     <ContentContainer>
-      <div className="py-4 flex items-center justify-between">
+      <div className="py-3 flex items-center justify-between">
         <h1>
           <Link
             href="/"
