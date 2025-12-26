@@ -1,8 +1,10 @@
 import React from "react"
 import classNames from "classnames"
 
-export interface CheckboxProps
-  extends Pick<React.HTMLProps<HTMLInputElement>, "className" | "onChange"> {
+export interface CheckboxProps extends Pick<
+  React.HTMLProps<HTMLInputElement>,
+  "className" | "onChange"
+> {
   checked: boolean
 }
 
