@@ -262,7 +262,9 @@ export const getStaticProps: GetStaticProps<
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const recipes = await fs.readdir(path.join(process.cwd(), "recipes"))
+  const recipesDir = path.join(process.cwd(), "recipes")
+  const entries = await fs.readdir(recipesDir)
+  const recipes = entries.filter((name) => !name.endsWith(".yml"))
   return {
     paths: recipes.map((slug) => ({
       params: {
