@@ -17,6 +17,8 @@ const Index: React.FC<IndexProps> = ({ recipes }) => {
             {recipe.url ? (
               <a
                 href={recipe.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
               >
                 {recipe.title}
@@ -48,7 +50,7 @@ const Index: React.FC<IndexProps> = ({ recipes }) => {
 
 export default Index
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<IndexProps> = async () => {
   const { recipes } = await getAllRecipes()
   return { props: { recipes } }
 }
