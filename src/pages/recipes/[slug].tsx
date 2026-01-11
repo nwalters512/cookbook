@@ -7,13 +7,11 @@ import yaml from "js-yaml"
 import SEO from "../../components/seo"
 import { useCheckboxes } from "../../hooks/useCheckboxes"
 import { Checkbox } from "../../components/checkbox"
-import { replaceFractionsWithUnicode } from "../../data/recipes"
+import {
+  replaceFractionsWithUnicode,
+  LocalRecipeSchema,
+} from "../../data/recipes"
 import classNames from "classnames"
-
-interface RecipePathsParams {
-  slug: string
-  [param: string]: any
-}
 
 interface SectionTitleProps {
   children: React.ReactNode
@@ -134,11 +132,11 @@ function renderIngredient(ingredient: string): React.ReactNode {
 
 interface RecipeProps {
   title: string
-  description?: string
+  description: string | null
   ingredients: string[]
   slug: string
   steps: string[]
-  notes?: string[]
+  notes: string[] | null
 }
 
 const Recipe: React.FC<RecipeProps> = ({
@@ -154,7 +152,7 @@ const Recipe: React.FC<RecipeProps> = ({
   return (
     <div className="max-w-4xl mx-auto">
       <SEO title={title} description={description} />
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 flex flex-col gap-6">
+      <div className="recipe-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 flex flex-col gap-6">
         <div>
           <h1
             className={classNames(
@@ -186,7 +184,7 @@ const Recipe: React.FC<RecipeProps> = ({
                     <Checkbox
                       className="mr-2"
                       checked={isChecked}
-                      onChange={(e) => {
+                      onChange={() => {
                         handleToggle(ingredientKey)
                       }}
                     />
@@ -215,7 +213,7 @@ const Recipe: React.FC<RecipeProps> = ({
         <div>
           <SectionTitle>Directions</SectionTitle>
           <ol className="step-list space-y-4">
-            {steps.map((step, i) => (
+            {steps.map((step) => (
               <li
                 className="step text-gray-800 dark:text-gray-200 leading-relaxed"
                 key={step}
@@ -247,9 +245,9 @@ export default Recipe
 
 export const getStaticProps: GetStaticProps<
   RecipeProps,
-  RecipePathsParams
+  { slug: string }
 > = async (context) => {
-  const { slug } = context.params
+  const { slug } = context.params!
   let recipeData = await fs.readFile(
     path.join(process.cwd(), "recipes", slug, "index.yml"),
     "utf-8"
@@ -257,7 +255,7 @@ export const getStaticProps: GetStaticProps<
   // Preconvert all fractions to their corresponding unicode characters
   recipeData = replaceFractionsWithUnicode(recipeData)
 
-  const parsedRecipeData = yaml.load(recipeData) as RecipeProps
+  const parsedRecipeData = LocalRecipeSchema.parse(yaml.load(recipeData))
   return { props: { slug, ...parsedRecipeData } }
 }
 

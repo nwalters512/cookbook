@@ -1,16 +1,35 @@
 import fs from "fs-extra"
 import path from "path"
 import yaml from "js-yaml"
+import { z } from "zod"
+
+// Zod schemas for recipe validation
+// Use .nullable().default(null) for optional fields since Next.js can't serialize undefined
+export const LocalRecipeSchema = z.object({
+  title: z.string(),
+  description: z.string().nullable().default(null),
+  ingredients: z.array(z.string()),
+  steps: z.array(z.string()),
+  notes: z.array(z.string()).nullable().default(null),
+})
+
+const ExternalRecipeSchema = z.object({
+  title: z.string(),
+  url: z.string().url(),
+  description: z.string().nullable().default(null),
+})
+
+const ExternalRecipesSchema = z.array(ExternalRecipeSchema)
 
 export interface Recipe {
   slug: string
   title: string
-  description?: string
+  description: string | null
   url?: string // If present, recipe is external
   domain?: string // Extracted domain for external recipes
   ingredients: string[]
   steps: string[]
-  notes?: string[]
+  notes: string[] | null
 }
 
 function getDomain(url: string): string {
@@ -27,29 +46,26 @@ export interface RecipeData {
   recipesBySlug: RecipesBySlug
 }
 
-interface ExternalRecipeYaml {
-  title: string
-  url: string
-  description?: string
-}
-
 async function getExternalRecipes(): Promise<Recipe[]> {
   const externalPath = path.join(process.cwd(), "recipes", "external.yml")
   if (!(await fs.pathExists(externalPath))) return []
 
   const rawData = await fs.readFile(externalPath, "utf-8")
-  const externalRecipes = yaml.load(rawData) as ExternalRecipeYaml[]
+  const parsed = yaml.load(rawData)
 
-  if (!externalRecipes) return []
+  if (!parsed) return []
+
+  const externalRecipes = ExternalRecipesSchema.parse(parsed)
 
   return externalRecipes.map((recipe) => ({
     slug: recipe.title.toLowerCase().replace(/\s+/g, "-"),
     title: recipe.title,
     url: recipe.url,
     domain: getDomain(recipe.url),
-    description: recipe.description ?? null,
+    description: recipe.description,
     ingredients: [],
     steps: [],
+    notes: null,
   }))
 }
 
@@ -117,7 +133,8 @@ export const getAllRecipes = async (): Promise<RecipeData> => {
         // Preconvert all fractions to their corresponding unicode characters
         rawData = replaceFractionsWithUnicode(rawData)
 
-        const parsedData = yaml.load(rawData) as Recipe
+        const parsed = yaml.load(rawData)
+        const parsedData = LocalRecipeSchema.parse(parsed)
         return {
           ...parsedData,
           slug,

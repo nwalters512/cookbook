@@ -29,3 +29,81 @@ li.step:not(:last-child) {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+/* Print styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 11pt;
+    line-height: 1.3;
+  }
+
+  /* Hide interactive elements */
+  .checkbox,
+  button,
+  header {
+    display: none !important;
+  }
+
+  .recipe-card {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Ensure text is black */
+  h1,
+  h2,
+  h3,
+  p,
+  li,
+  span,
+  a {
+    color: black !important;
+  }
+
+  a {
+    text-decoration: none !important;
+  }
+
+  h1 {
+    font-size: 18pt !important;
+    margin-bottom: 8pt !important;
+  }
+
+  h2 {
+    font-size: 12pt !important;
+    margin-top: 12pt !important;
+    margin-bottom: 4pt !important;
+    border-color: #999 !important;
+    page-break-after: avoid;
+  }
+
+  /* Compact ingredient list */
+  ul {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  ul li,
+  ul label {
+    margin: 0 !important;
+    padding: 1pt 0 !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Compact step list */
+  ol.step-list {
+    margin: 0 !important;
+  }
+
+  li.step {
+    margin-bottom: 6pt !important;
+    page-break-inside: avoid;
+  }
+
+  li.step:before {
+    margin-bottom: 0 !important;
+  }
+}

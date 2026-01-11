@@ -2,7 +2,7 @@ import React from "react"
 import Head from "next/head"
 
 interface SEOProps {
-  description?: string
+  description?: string | null
   title?: string
 }
 

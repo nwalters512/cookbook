@@ -23,7 +23,7 @@ export function useCheckboxes(key: string) {
   // first render (via `useEffect`), we copy the state from local storage into
   // this hook and keep it up to date thereafter. This keeps the state from
   // `useLocalStorage()` as the source of truth.
-  const [state, setState] = React.useState({})
+  const [state, setState] = React.useState<Record<string, boolean>>({})
   React.useEffect(() => {
     setState(checked)
   }, [checked])
