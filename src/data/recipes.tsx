@@ -6,9 +6,16 @@ export interface Recipe {
   slug: string
   title: string
   description?: string
+  url?: string // If present, recipe is external
+  domain?: string // Extracted domain for external recipes
   ingredients: string[]
   steps: string[]
   notes?: string[]
+}
+
+function getDomain(url: string): string {
+  const hostname = new URL(url).hostname
+  return hostname.replace(/^www\./, "")
 }
 
 export interface RecipesBySlug {
@@ -20,7 +27,31 @@ export interface RecipeData {
   recipesBySlug: RecipesBySlug
 }
 
-let cache: RecipeData = null
+interface ExternalRecipeYaml {
+  title: string
+  url: string
+  description?: string
+}
+
+async function getExternalRecipes(): Promise<Recipe[]> {
+  const externalPath = path.join(process.cwd(), "recipes", "external.yml")
+  if (!(await fs.pathExists(externalPath))) return []
+
+  const rawData = await fs.readFile(externalPath, "utf-8")
+  const externalRecipes = yaml.load(rawData) as ExternalRecipeYaml[]
+
+  if (!externalRecipes) return []
+
+  return externalRecipes.map((recipe) => ({
+    slug: recipe.title.toLowerCase().replace(/\s+/g, "-"),
+    title: recipe.title,
+    url: recipe.url,
+    domain: getDomain(recipe.url),
+    description: recipe.description ?? null,
+    ingredients: [],
+    steps: [],
+  }))
+}
 
 function getFractionUnicode(fraction: string): string | null {
   switch (fraction) {
@@ -72,11 +103,12 @@ export function replaceFractionsWithUnicode(str: string): string {
 }
 
 export const getAllRecipes = async (): Promise<RecipeData> => {
-  if (cache) return cache
-  const recipes = await fs.readdir(path.join(process.cwd(), "recipes"))
-  const recipeData = (
-    await Promise.all(
-      recipes.map(async (slug) => {
+  // Load local recipes from directories
+  const recipeDirs = await fs.readdir(path.join(process.cwd(), "recipes"))
+  const localRecipes = await Promise.all(
+    recipeDirs
+      .filter((name) => !name.endsWith(".yml")) // Skip external.yml
+      .map(async (slug) => {
         let rawData = await fs.readFile(
           path.join(process.cwd(), "recipes", slug, "index.yml"),
           "utf-8"
@@ -91,20 +123,29 @@ export const getAllRecipes = async (): Promise<RecipeData> => {
           slug,
         }
       })
-    )
-  ).sort((a, b) => a.title.localeCompare(b.title))
-  const recipesBySlug = recipeData.reduce(
+  )
+
+  // Load external recipes
+  const externalRecipes = await getExternalRecipes()
+
+  // Merge and sort all recipes alphabetically
+  const allRecipes = [...localRecipes, ...externalRecipes].sort((a, b) =>
+    a.title.localeCompare(b.title)
+  )
+
+  // Only local recipes have detail pages
+  const recipesBySlug = localRecipes.reduce(
     (acc, data) => ({
       ...acc,
       [data.slug]: data,
     }),
     {} as RecipesBySlug
   )
-  cache = {
-    recipes: recipeData,
+
+  return {
+    recipes: allRecipes,
     recipesBySlug,
   }
-  return cache
 }
 
 export const getRecipeBySlug = async (slug: string): Promise<Recipe> => {
