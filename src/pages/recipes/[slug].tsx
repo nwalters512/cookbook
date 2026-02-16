@@ -83,7 +83,7 @@ const UNITS = [
 // We allow for parenthesized info in between the quantity and units.
 // This is useful for things like "2 (15oz) cans of chickpeas".
 const QUANTITY_AND_UNITS = new RegExp(
-  `(${QUANTITY}?\\s*(?:\\([^\)]*\\)\\s*)?(?:(?:${UNITS})\\s+)*)?(.*)`,
+  `(${QUANTITY}?\\s*(?:\\([^\)]*\\)\\s*)?(?:(?:${UNITS})\\s+)*(?:and\\s+${QUANTITY}\\s+(?:(?:${UNITS})\\s+)+)?)?(.*)`,
   "i"
 )
 
